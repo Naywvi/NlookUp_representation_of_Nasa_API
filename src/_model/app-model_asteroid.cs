@@ -123,6 +123,7 @@ namespace mIndex{
             RadioButton selectionDefault = new RadioButton();
             selectionDefault.Location = new Point(100,127);
             selectionDefault.Text = "default";
+            selectionDefault.Checked = true;
             return selectionDefault;
         }
         public Label filtersTitle(){
