@@ -1,0 +1,8 @@
+- (copyright)                   /!\
+- date                          /!\
+- ( explanation )               /!\
+- ( hdurl )                     /!\---> hHD url
+- media_type
+- service_version
+- title                         /!\
+- url                           /!\---> Simple url
