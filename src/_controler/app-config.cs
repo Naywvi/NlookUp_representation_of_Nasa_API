@@ -32,7 +32,7 @@ namespace view{
             this.MaximizeBox = false;
 
             this.Text = "nlook up";
-            this.viewLoad("result-apod");
+            this.viewLoad("api");
         }
         #endregion
     }

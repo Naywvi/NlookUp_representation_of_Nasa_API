@@ -3,3 +3,11 @@ https://api.nasa.gov/planetary/apod?api_key=mifplbkmFpir6CsGmQZleOr16ofeyUKTXZfJ
 
 apod
 https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY 
+
+>apod 
+
+>asteroid list by date
+
+>asteroid(result)
+
+>asteroid orbit

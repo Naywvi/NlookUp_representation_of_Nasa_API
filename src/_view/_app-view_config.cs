@@ -4,7 +4,7 @@ namespace view{
         public app(){
             InitializeComponent();
         }
-        private void viewLoad(string view){
+        public void viewLoad(string view){
             
             switch (view){
                 case "api":

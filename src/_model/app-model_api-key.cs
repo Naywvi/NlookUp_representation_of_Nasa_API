@@ -1,3 +1,5 @@
+using cApi;
+using System.Net;
 namespace mApiKey{
     // Api methods for _model
     public class initApiKeyMethods{
@@ -16,6 +18,7 @@ namespace mApiKey{
 
     // Api _model
     public class mApi{
+        private TextBox inputApiKeyTxt = new TextBox();
         public Label bordersApiKey(){
             var bordersApiKey = new Label();
             bordersApiKey.Location = new Point(20,20);
@@ -33,17 +36,35 @@ namespace mApiKey{
             return labelApiKey;
         }
         public TextBox inputApiKey(){
-            var inputApiKey = new TextBox();
-            inputApiKey.Location = new Point(30,70);
-            inputApiKey.Size = new Size(440,20);
-            inputApiKey.PlaceholderText = "Example input : mifpl44sFpir16or6CazdeOdr16ofey10KTXZfJr17Fr";
-            return inputApiKey;
+            inputApiKeyTxt.Location = new Point(30,70);
+            inputApiKeyTxt.Size = new Size(440,20);
+            inputApiKeyTxt.PlaceholderText = "Example input : mifpl44sFpir16or6CazdeOdr16ofey10KTXZfJr17Fr";
+            return inputApiKeyTxt;
         }
+        static readonly HttpClient client = new HttpClient();
         public Button buttonApiKey(){
             var buttonApiKey = new Button();
             buttonApiKey.Location = new Point(30,130);
             buttonApiKey.Size = new Size(440,40);
             buttonApiKey.Text = "Submit";
+            buttonApiKey.Click += new EventHandler((sender, e) => {
+                var input = this.inputApiKeyTxt.Text;
+                var cApiMethods = new cApiMethods();
+                
+                //
+
+                    string rt;
+                    WebRequest request = WebRequest.Create("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY"+input);
+                    WebResponse response = request.GetResponse();
+                    Stream dataStream = response.GetResponseStream();
+                    StreamReader reader = new StreamReader(dataStream);
+                    rt = reader.ReadToEnd();
+
+                
+                //
+                
+                MessageBox.Show(rt);
+            });
             return buttonApiKey;
         }
         // ApiKey link in browser _model
@@ -56,7 +77,7 @@ namespace mApiKey{
             linkLabel.Font = new Font("Georgia", 10);
             linkLabel.LinkClicked += new LinkLabelLinkClickedEventHandler((sender, e) => {
                 var parameter = new System.Diagnostics.ProcessStartInfo { Verb = "open", FileName = "explorer", Arguments = "https://api.nasa.gov/" };
-                System.Diagnostics.Process.Start(parameter );
+                System.Diagnostics.Process.Start(parameter);
             });
             return linkLabel;
         }
