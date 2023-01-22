@@ -1,5 +1,4 @@
-namespace nlook_up{
-
+namespace view{
     static class Program{
         [STAThread]
         static void Main(){

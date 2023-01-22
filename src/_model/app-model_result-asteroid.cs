@@ -1,4 +1,4 @@
-namespace asteroidResult{
+namespace masteroidResult{
     
     public class initAsteroidRMethods{
         private ARborders mARborders = new ARborders();

@@ -1,4 +1,4 @@
-namespace mIndex{
+namespace mAsteroid{
     // Callback of asteroid _model methods
     public class initAsteroidMethod{
         //<< asteroid callbacks

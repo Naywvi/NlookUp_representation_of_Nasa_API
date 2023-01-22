@@ -1,5 +1,4 @@
-namespace nlook_up{
-
+namespace view{
     partial class app{
         private int _height = 1000;
         public int height{
@@ -33,7 +32,7 @@ namespace nlook_up{
             this.MaximizeBox = false;
 
             this.Text = "nlook up";
-            this.viewLoad("result-asteroid");
+            this.viewLoad("result-apod");
         }
         #endregion
     }

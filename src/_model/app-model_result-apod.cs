@@ -1,7 +1,5 @@
-using System;
 using System.Net;
-using System.IO;
-namespace apodResult{
+namespace mapodResult{
     class initApodRMehods{
         private presentationRApod pApodR = new presentationRApod();
         private superfluApodR sApodR = new superfluApodR();
