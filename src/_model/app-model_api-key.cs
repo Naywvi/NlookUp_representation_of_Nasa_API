@@ -1,5 +1,5 @@
-using cApi;
 using System.Net;
+using view;
 namespace mApiKey{
     // Api methods for _model
     public class initApiKeyMethods{
@@ -17,8 +17,9 @@ namespace mApiKey{
     }
 
     // Api _model
-    public class mApi{
-        private TextBox inputApiKeyTxt = new TextBox();
+    public class mApi : app{
+        public TextBox inputApiKeyTxt = new TextBox();
+        //private cApiMethods cApiM = new cApiMethods();
         public Label bordersApiKey(){
             var bordersApiKey = new Label();
             bordersApiKey.Location = new Point(20,20);
@@ -49,21 +50,13 @@ namespace mApiKey{
             buttonApiKey.Text = "Submit";
             buttonApiKey.Click += new EventHandler((sender, e) => {
                 var input = this.inputApiKeyTxt.Text;
-                var cApiMethods = new cApiMethods();
-                
-                //
-
-                    string rt;
-                    WebRequest request = WebRequest.Create("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY"+input);
-                    WebResponse response = request.GetResponse();
-                    Stream dataStream = response.GetResponseStream();
-                    StreamReader reader = new StreamReader(dataStream);
-                    rt = reader.ReadToEnd();
-
-                
-                //
-                
-                MessageBox.Show(rt);
+                try{
+                    HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.nasa.gov/planetary/apod?api_key=" + input);
+                    HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
+                if (myHttpWebResponse.StatusCode == HttpStatusCode.OK);MessageBox.Show("ok");//this.viewLoad("asteroid");
+                }catch(WebException){
+                    MessageBox.Show("Invalid API key, or is it a connection issue ?");
+                }
             });
             return buttonApiKey;
         }
