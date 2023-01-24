@@ -1,4 +1,5 @@
 using System.Net;
+using vApi;
 namespace mApiKey{
     // Api methods for _model
     public class initApiKeyMethods{
@@ -16,9 +17,9 @@ namespace mApiKey{
     }
 
     // Api _model
-    public class mApi{
+    public class mApi : Form{
         public TextBox inputApiKeyTxt = new TextBox();
-        //private cApiMethods cApiM = new cApiMethods();
+        static readonly HttpClient client = new HttpClient();
         public Label bordersApiKey(){
             var bordersApiKey = new Label();
             bordersApiKey.Location = new Point(20,20);
@@ -41,7 +42,7 @@ namespace mApiKey{
             inputApiKeyTxt.PlaceholderText = "Example input : mifpl44sFpir16or6CazdeOdr16ofey10KTXZfJr17Fr";
             return inputApiKeyTxt;
         }
-        static readonly HttpClient client = new HttpClient();
+        //Button to submit api key _model
         public Button buttonApiKey(){
             var buttonApiKey = new Button();
             buttonApiKey.Location = new Point(30,130);
@@ -53,11 +54,14 @@ namespace mApiKey{
                     HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.nasa.gov/planetary/apod?api_key=" + input);
                     HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
                     if (myHttpWebResponse.StatusCode == HttpStatusCode.OK){
-                    
+                        var app = new api();
+                        app.apikeyValid();
                     }
                 }catch(WebException){
                     MessageBox.Show("Invalid API key, or is it a connection issue ?");
                 }
+                
+
             });
             return buttonApiKey;
         }
@@ -76,5 +80,4 @@ namespace mApiKey{
             return linkLabel;
         }
     }
-    
 }

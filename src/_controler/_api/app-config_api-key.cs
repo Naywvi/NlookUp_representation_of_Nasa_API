@@ -1,3 +1,4 @@
+using vAsteroid;
 namespace vApi{
     partial class api{
         private int _height = 500;
@@ -17,17 +18,25 @@ namespace vApi{
             base.Dispose(disposing);
         }
         public void InitializeComponent(){
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(this.height, this.width);
+            components = new System.ComponentModel.Container();
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(height, width);
 
             //<< Disable resizing
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MinimizeBox = false;
-            this.MaximizeBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MinimizeBox = false;
+            MaximizeBox = false;
 
-            this.Text = "nlook up";
-            this.viewLoad();
+            Text = "nlook up";
+            viewLoad();
+            
         }
+        // Hide api & show asteroid
+        public void apikeyValid(){  
+            vApi.api FormThread = (vApi.api)Application.OpenForms[0];
+            FormThread.Hide();
+            var asteroid = new asteroid();
+            asteroid.Show();
+        }  
     }
 }

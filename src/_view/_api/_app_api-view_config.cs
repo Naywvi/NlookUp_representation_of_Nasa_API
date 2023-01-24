@@ -4,7 +4,7 @@ namespace vApi{
             InitializeComponent();
         }
         public void viewLoad(){
-            this.vApiAsync();
+            vApiAsync();
         }
     }
 }
