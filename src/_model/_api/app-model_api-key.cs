@@ -1,5 +1,4 @@
 using System.Net;
-using view;
 namespace mApiKey{
     // Api methods for _model
     public class initApiKeyMethods{
@@ -17,7 +16,7 @@ namespace mApiKey{
     }
 
     // Api _model
-    public class mApi : app{
+    public class mApi{
         public TextBox inputApiKeyTxt = new TextBox();
         //private cApiMethods cApiM = new cApiMethods();
         public Label bordersApiKey(){
@@ -53,7 +52,9 @@ namespace mApiKey{
                 try{
                     HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.nasa.gov/planetary/apod?api_key=" + input);
                     HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
-                if (myHttpWebResponse.StatusCode == HttpStatusCode.OK);MessageBox.Show("ok");//this.viewLoad("asteroid");
+                    if (myHttpWebResponse.StatusCode == HttpStatusCode.OK){
+                    
+                    }
                 }catch(WebException){
                     MessageBox.Show("Invalid API key, or is it a connection issue ?");
                 }
@@ -75,4 +76,5 @@ namespace mApiKey{
             return linkLabel;
         }
     }
+    
 }

@@ -1,6 +1,6 @@
 using mApod;
-namespace view{
-    public partial class app : Form{
+namespace vApod{
+    public partial class apod : Form{
         private initApodMethod mapod = new initApodMethod();
         public void vApodAsync(){
             this.Tabs();

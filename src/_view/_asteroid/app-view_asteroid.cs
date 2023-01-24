@@ -1,6 +1,6 @@
 using mAsteroid;
-namespace view{
-    public partial class app : Form{
+namespace vAsteroid{
+    public partial class asteroid : Form{
         private initAsteroidMethod masteroid = new initAsteroidMethod();
         public void vAsteroidAsync(){
             this.Tabs();

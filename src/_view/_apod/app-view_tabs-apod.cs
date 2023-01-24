@@ -1,6 +1,6 @@
 using mTab;
-namespace view{
-    public partial class app : Form{
+namespace vApod{
+    public partial class apod : Form{
         private tab mtab = new tab();
         private TabControl dynamicTabControl = new TabControl();
         private TabPage pAsteroid = new TabPage();

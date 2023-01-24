@@ -1,16 +1,9 @@
-namespace view{
-    partial class app{
-        private int _height = 1000;
-        public int height{
-            get => _height;
-        }
-        private int _width = 700;
-        public int width{
-            get => _width;
-        }
-        
-        private System.ComponentModel.IContainer components = null;
+using config;
 
+namespace vRAsteroid{
+    partial class asteroidResult{
+        private conf c = new conf();
+        private System.ComponentModel.IContainer components = null;
         protected override void Dispose(bool disposing){
             if (disposing && (components != null))
             {
@@ -18,13 +11,11 @@ namespace view{
             }
             base.Dispose(disposing);
         }
-        
-        #region Windows Form Designer generated code
 
-        private void InitializeComponent(){
+        public void InitializeComponent(){
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(this.height, this.width);
+            this.ClientSize = new System.Drawing.Size(this.c.height, this.c.width);
 
             //<< Disable resizing
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -32,8 +23,7 @@ namespace view{
             this.MaximizeBox = false;
 
             this.Text = "nlook up";
-            this.viewLoad("api");
+            this.viewLoad();
         }
-        #endregion
     }
 }
