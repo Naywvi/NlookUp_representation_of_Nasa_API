@@ -1,7 +1,6 @@
 using config;
 namespace vAsteroid{
     partial class asteroid{
-        private conf c = new conf();
         private System.ComponentModel.IContainer components = null;
         protected override void Dispose(bool disposing){
             if (disposing && (components != null))
@@ -13,7 +12,7 @@ namespace vAsteroid{
         public void InitializeComponent(){
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(this.c.height, this.c.width);
+            this.ClientSize = new System.Drawing.Size(conf.height, conf.width);
 
             //<< Disable resizing
             this.FormBorderStyle = FormBorderStyle.FixedSingle;

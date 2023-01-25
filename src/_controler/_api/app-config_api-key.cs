@@ -1,4 +1,5 @@
 using vAsteroid;
+using config;
 namespace vApi{
     partial class api{
         private int _height = 500;
@@ -31,8 +32,9 @@ namespace vApi{
             viewLoad();
             
         }
-        // Hide api & show asteroid
-        public void apikeyValid(){  
+        // Hide api & show asteroid & save api key
+        public void apikeyValid(string apiKey){ 
+            conf.apiKey = apiKey;
             vApi.api FormThread = (vApi.api)Application.OpenForms[0];
             FormThread.Hide();
             var asteroid = new asteroid();

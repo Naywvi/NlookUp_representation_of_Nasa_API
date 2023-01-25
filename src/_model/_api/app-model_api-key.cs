@@ -51,11 +51,11 @@ namespace mApiKey{
             buttonApiKey.Click += new EventHandler((sender, e) => {
                 var input = this.inputApiKeyTxt.Text;
                 try{
-                    HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.nasa.gov/planetary/apod?api_key=" + input);
-                    HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
-                    if (myHttpWebResponse.StatusCode == HttpStatusCode.OK){
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.nasa.gov/planetary/apod?api_key=" + input);
+                    HttpWebResponse requestC = (HttpWebResponse)request.GetResponse();
+                    if (requestC.StatusCode == HttpStatusCode.OK){
                         var app = new api();
-                        app.apikeyValid();
+                        app.apikeyValid(input);
                     }
                 }catch(WebException){
                     MessageBox.Show("Invalid API key, or is it a connection issue ?");

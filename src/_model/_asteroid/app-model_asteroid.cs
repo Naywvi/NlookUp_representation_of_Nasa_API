@@ -1,3 +1,6 @@
+using config;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 namespace mAsteroid{
     // Callback of asteroid _model methods
     public class initAsteroidMethod{
@@ -30,26 +33,24 @@ namespace mAsteroid{
     // Loading asteroid _model
     public class loading{
         public ProgressBar generateLoading(){
-            ProgressBar loading = new ProgressBar();
-            loading.Location = new Point(10, 630);
-            loading.Width = 970;
-            loading.Minimum = 0;
-            loading.Maximum = 100;
-            loading.Value = 40;
-            return loading;
+            request.loading.Location = new Point(10, 630);
+            request.loading.Width = 970;
+            request.loading.Minimum = 0;
+            request.loading.Maximum = 100;
+            request.loading.Value = 0;
+            return request.loading;
         }
     }
     // List of results asteroid _model
     public class list{
         public ListBox generatedList(){
-            ListBox list = new ListBox();
-            list.Location = new Point(10 , 180);
-            list.Size = new Size(10,440);
-            list.Width = 970;
-            list.BorderStyle = BorderStyle.Fixed3D;
+            request.list.Location = new Point(10 , 180);
+            request.list.Size = new Size(10,440);
+            request.list.Width = 970;
+            request.list.BorderStyle = BorderStyle.Fixed3D;
             //generateItem(); //<---- depuis l'api
-            list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");
-            return list;
+            //request.list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");
+            return request.list;
         }
     }
 
@@ -76,14 +77,18 @@ namespace mAsteroid{
             btnSubmit.Location = new Point(810,124);
             btnSubmit.Text = "Submit";
             btnSubmit.Size = new Size(160,30);
+            // Check if the dates are valid 2015-03-09
+            btnSubmit.Click += new EventHandler((sender, e) => {
+                request.requestAsteroid();
+            });
             return btnSubmit;
         }
         public TextBox filtersCustomEndDate(){
-            TextBox endDateT = new TextBox();
-            endDateT.Location = new Point(670,126);
-            endDateT.PlaceholderText = "YYYY-MM-DD";
-            endDateT.Width = 130;
-            return endDateT;
+            request.endDateT.Location = new Point(670,126);
+            request.endDateT.PlaceholderText = "YYYY-MM-DD";
+            request.endDateT.Width = 130;
+            request.endDateT.Enabled = false;
+            return request.endDateT;
         }
         public Label filtersCustomLabelEndDate(){
             Label endDateL = new Label();
@@ -93,11 +98,11 @@ namespace mAsteroid{
             return endDateL;
         }
          public TextBox filtersCustomStartDate(){
-            TextBox startDateT = new TextBox();
-            startDateT.Location = new Point(430,127);
-            startDateT.PlaceholderText = "YYYY-MM-DD";
-            startDateT.Width = 130;
-            return startDateT;
+            request.startDateT.Location = new Point(430,127);
+            request.startDateT.PlaceholderText = "YYYY-MM-DD";
+            request.startDateT.Width = 130;
+            request.startDateT.Enabled = false;
+            return request.startDateT;
         }
         public Label filtersCustomLabelStartDate(){
             Label startDateL = new Label();
@@ -117,6 +122,12 @@ namespace mAsteroid{
             RadioButton selectionCustom = new RadioButton();
             selectionCustom.Location = new Point(205,127);
             selectionCustom.Text = "Custom";
+            selectionCustom.CheckedChanged += (sender, e) => {
+                if(selectionCustom.Checked){
+                    request.startDateT.Enabled = true;
+                    request.endDateT.Enabled = true;
+                }
+            };
             return selectionCustom;
         }
         public RadioButton filtersSelectionDefault(){
@@ -124,6 +135,12 @@ namespace mAsteroid{
             selectionDefault.Location = new Point(100,127);
             selectionDefault.Text = "default";
             selectionDefault.Checked = true;
+            selectionDefault.CheckedChanged += (sender, e) => {
+                if(selectionDefault.Checked){
+                    request.startDateT.Enabled = false;
+                    request.endDateT.Enabled = false;
+                }
+            };
             return selectionDefault;
         }
         public Label filtersTitle(){

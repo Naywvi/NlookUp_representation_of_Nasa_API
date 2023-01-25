@@ -1,12 +1,10 @@
+using System.Net;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 namespace config{
-    public class conf{
-        private int _height = 1000;
-            public int height{
-                get => _height;
-            }
-            private int _width = 700;
-            public int width{
-                get => _width;
-            }
+    static class conf{
+        public static int height = 1000;
+        public static int width = 700;
+        public static string apiKey = "mifplbkmFpir6CsGmQZleOr16ofeyUKTXZfJsoc7";
     }
 }
