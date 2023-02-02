@@ -160,6 +160,10 @@ namespace masteroidResult{
     }
     // Label for asteroide description _model
     public class ARDescriptionDistanceAsteroide{
+        private Label estimSmin = new Label();
+        private Label estimSmax = new Label();
+        private Label estimHmin = new Label();
+        private Label estimHmax = new Label();
         public RadioButton ARkm(){
             RadioButton ARkm = new RadioButton();
             ARkm.Location = new System.Drawing.Point(510,20);
@@ -167,6 +171,12 @@ namespace masteroidResult{
             ARkm.Size = new System.Drawing.Size(150,20);
             ARkm.Font = new System.Drawing.Font("Georgia", 8);
             ARkm.Text = "Scales in km";
+            ARkm.CheckedChanged += (sender, e) => {
+                estimHmax.Text = "Estimated km/h MAX : " + request.resultAsteroid.estimated_diameter.kilometers.estimated_diameter_max;
+                estimHmin.Text = "Estimated km/h MIN : " + request.resultAsteroid.estimated_diameter.kilometers.estimated_diameter_min;
+                estimSmax.Text = "Estimated m/s MAX : " + request.resultAsteroid.estimated_diameter.meters.estimated_diameter_max;
+                estimSmin.Text = "Estimated m/s MIN : " + request.resultAsteroid.estimated_diameter.meters.estimated_diameter_max;
+            };
             return ARkm;
         }
         public RadioButton ARml(){
@@ -175,39 +185,36 @@ namespace masteroidResult{
             ARml.Size = new System.Drawing.Size(150,20);
             ARml.Font = new System.Drawing.Font("Georgia", 8);
             ARml.Text = "Scales in Miles";
+            ARml.CheckedChanged += (sender, e) => {
+                estimHmax.Text = "Estimated miles/h MAX : " + request.resultAsteroid.estimated_diameter.miles.estimated_diameter_max;
+                estimHmin.Text = "Estimated miles/h MIN : " + request.resultAsteroid.estimated_diameter.miles.estimated_diameter_min;
+                estimSmax.Text = "Estimated feet/s MAX : " + request.resultAsteroid.estimated_diameter.feet.estimated_diameter_max;
+                estimSmin.Text = "Estimated feet/s MIN : " + request.resultAsteroid.estimated_diameter.feet.estimated_diameter_max;
+            };
             return ARml;
         }
         public Label AestimHmax(){
-            Label estimHmax = new Label();
             estimHmax.Location = new System.Drawing.Point(510,80);
             estimHmax.Size = new System.Drawing.Size(460,20);
             estimHmax.Font = new System.Drawing.Font("Georgia", 8);
-            estimHmax.Text = "Estimated km/h or miles/h MAX     : -----";
-            //
             return estimHmax;
         }
         public Label AestimHmin(){
-            Label estimHmin = new Label();
             estimHmin.Location = new System.Drawing.Point(510,100);
             estimHmin.Size = new System.Drawing.Size(460,20);
             estimHmin.Font = new System.Drawing.Font("Georgia", 8);
-            estimHmin.Text = "Estimated km/h or miles/h MIN      : -----" ;
             return estimHmin;
         }
         public Label AestimSmax(){
-            Label estimSmax = new Label();
             estimSmax.Location = new System.Drawing.Point(510,120);
             estimSmax.Size = new System.Drawing.Size(460,20);
             estimSmax.Font = new System.Drawing.Font("Georgia", 8);
-            estimSmax.Text = "Estimated km/s or miles/s MAX      : -----";
             return estimSmax;
         }
         public Label AestimSmin(){
-            Label estimSmin = new Label();
             estimSmin.Location = new System.Drawing.Point(510,140);
             estimSmin.Size = new System.Drawing.Size(460,20);
             estimSmin.Font = new System.Drawing.Font("Georgia", 8);
-            estimSmin.Text = "Estimated km/s or miles/s MIN       : -----";
             return estimSmin;
         }
 
