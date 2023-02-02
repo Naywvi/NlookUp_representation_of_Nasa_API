@@ -1,3 +1,4 @@
+using config;
 namespace masteroidResult{
     
     public class initAsteroidRMethods{
@@ -177,6 +178,7 @@ namespace masteroidResult{
             estimHmax.Size = new System.Drawing.Size(460,20);
             estimHmax.Font = new System.Drawing.Font("Georgia", 8);
             estimHmax.Text = "Estimated km/h or miles/h MAX     : -----";
+            //
             return estimHmax;
         }
         public Label AestimHmin(){
@@ -184,7 +186,7 @@ namespace masteroidResult{
             estimHmin.Location = new System.Drawing.Point(510,100);
             estimHmin.Size = new System.Drawing.Size(460,20);
             estimHmin.Font = new System.Drawing.Font("Georgia", 8);
-            estimHmin.Text = "Estimated km/h or miles/h MIN      : -----";
+            estimHmin.Text = "Estimated km/h or miles/h MIN      : -----" ;
             return estimHmin;
         }
         public Label AestimSmax(){

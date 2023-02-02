@@ -1,4 +1,4 @@
-using vAsteroid;
+using application;
 using config;
 namespace vApi{
     partial class api{
@@ -32,13 +32,13 @@ namespace vApi{
             viewLoad();
             
         }
-        // Hide api & show asteroid & save api key
+        // Hide api & show application after verify api key
         public void apikeyValid(string apiKey){ 
             conf.apiKey = apiKey;
             vApi.api FormThread = (vApi.api)Application.OpenForms[0];
             FormThread.Hide();
-            var asteroid = new asteroid();
-            asteroid.Show();
-        }  
+            var app = new appnn();
+            app.Show();
+        }
     }
 }

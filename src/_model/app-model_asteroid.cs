@@ -1,6 +1,4 @@
 using config;
-using System.Text.Json;
-using System.Text.Json.Nodes;
 namespace mAsteroid{
     // Callback of asteroid _model methods
     public class initAsteroidMethod{
@@ -44,13 +42,18 @@ namespace mAsteroid{
     // List of results asteroid _model
     public class list{
         public ListBox generatedList(){
-            request.list.Location = new Point(10 , 180);
-            request.list.Size = new Size(10,440);
-            request.list.Width = 970;
-            request.list.BorderStyle = BorderStyle.Fixed3D;
-            //generateItem(); //<---- depuis l'api
-            //request.list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");
-            return request.list;
+            func.list.Location = new Point(10 , 180);
+            func.list.Size = new Size(10,440);
+            func.list.Width = 970;
+            func.list.BorderStyle = BorderStyle.Fixed3D;
+            func.list.MouseDoubleClick += (sender, e) => {
+                if (func.list.SelectedItem != null){
+                    application.appnn app = (application.appnn)Application.OpenForms[0];
+                    var id = func.list.SelectedItem.ToString().Split(' ');
+                    app.tabRequest("asteroid",id[2]);
+                }
+            };
+            return func.list;
         }
     }
 
@@ -79,7 +82,8 @@ namespace mAsteroid{
             btnSubmit.Size = new Size(160,30);
             // Check if the dates are valid 2015-03-09
             btnSubmit.Click += new EventHandler((sender, e) => {
-                request.requestAsteroid();
+                request.requestAsteroidList();
+                                
             });
             return btnSubmit;
         }
@@ -139,6 +143,8 @@ namespace mAsteroid{
                 if(selectionDefault.Checked){
                     request.startDateT.Enabled = false;
                     request.endDateT.Enabled = false;
+                    request.startDateT.Text = "";
+                    request.endDateT.Text = "";
                 }
             };
             return selectionDefault;

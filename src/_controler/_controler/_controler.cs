@@ -1,6 +1,4 @@
-using System.Net;
-using System.Text.Json;
-using System.Text.Json.Nodes;
+
 namespace config{
     static class conf{
         public static int height = 1000;

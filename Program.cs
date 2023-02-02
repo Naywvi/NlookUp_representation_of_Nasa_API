@@ -1,11 +1,11 @@
 // using vApi;
-using vAsteroid;
+using application;
 namespace view{
     static class Program{
         [STAThread]
         static void Main(){
             ApplicationConfiguration.Initialize();
-            Application.Run(new asteroid());
+            Application.Run(new appnn());
         }
     }
 }
