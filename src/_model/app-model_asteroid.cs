@@ -83,7 +83,6 @@ namespace mAsteroid{
             // Check if the dates are valid 2015-03-09
             btnSubmit.Click += new EventHandler((sender, e) => {
                 request.requestAsteroidList();
-                                
             });
             return btnSubmit;
         }

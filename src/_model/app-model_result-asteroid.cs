@@ -116,7 +116,7 @@ namespace masteroidResult{
             ARNameAsteroide.Location = new System.Drawing.Point(10,10);
             ARNameAsteroide.Size = new System.Drawing.Size(480,50);
             ARNameAsteroide.Font = new System.Drawing.Font("Arial", 15, System.Drawing.FontStyle.Bold);
-            ARNameAsteroide.Text = "Asteroid Name";
+            ARNameAsteroide.Text = request.resultAsteroid.name.ToString();
             ARNameAsteroide.TextAlign = ContentAlignment.MiddleCenter;
             ARNameAsteroide.BorderStyle = BorderStyle.Fixed3D;
             return ARNameAsteroide;
@@ -128,28 +128,33 @@ namespace masteroidResult{
             Label ARSuspicious = new Label();
             ARSuspicious.Location = new System.Drawing.Point(20,80);
             ARSuspicious.Font = new System.Drawing.Font("Georgia", 8);
-            ARSuspicious.Text = "Suspicious Asteroid ?";
+            if(request.resultAsteroid.is_potentially_hazardous_asteroid.ToString() == "True")ARSuspicious.Text = request.resultAsteroid.name.ToString() + " is a potentially hazardous asteroid";
+            else ARSuspicious.Text = request.resultAsteroid.name.ToString() + " is not a potentially hazardous asteroid";
+            ARSuspicious.Size = new System.Drawing.Size(450,20);
             return ARSuspicious;
         }
         public Label ARMagnitude(){
             Label ARMagnitude = new Label();
             ARMagnitude.Location = new System.Drawing.Point(20,100);
             ARMagnitude.Font = new System.Drawing.Font("Georgia", 8);
-            ARMagnitude.Text = "Magnitude";
+            ARMagnitude.Text = "Magnitude : " + request.resultAsteroid.absolute_magnitude_h.ToString();
+            ARMagnitude.Size = new System.Drawing.Size(450,20);
             return ARMagnitude;
         }
         public Label ARUncertain(){
             Label ARUncertain = new Label();
             ARUncertain.Location = new System.Drawing.Point(20,120);
             ARUncertain.Font = new System.Drawing.Font("Georgia", 8);
-            ARUncertain.Text = "Uncertain";
+            ARUncertain.Text = "Uncertain : " + request.resultAsteroid.orbital_data.orbit_uncertainty.ToString() + "%";
+            ARUncertain.Size = new System.Drawing.Size(450,20);
             return ARUncertain;
         }
         public Label AREquinox(){
             Label AREquinox = new Label();
             AREquinox.Location = new System.Drawing.Point(20,140);
             AREquinox.Font = new System.Drawing.Font("Georgia", 8);
-            AREquinox.Text = "Equinox";
+            AREquinox.Text = "Equinox : " + request.resultAsteroid.orbital_data.equinox.ToString();
+            AREquinox.Size = new System.Drawing.Size(450,20);
             return AREquinox;
         }
     }
@@ -214,7 +219,7 @@ namespace masteroidResult{
             ARFirst.Location = new System.Drawing.Point(20,190);
             ARFirst.Size = new System.Drawing.Size(800,20);
             ARFirst.Font = new System.Drawing.Font("Georgia", 8);
-            ARFirst.Text = "First Observation                           : ----";
+            ARFirst.Text = "First observation of " + request.resultAsteroid.name.ToString() + " : " + request.resultAsteroid.orbital_data.first_observation_date;
             return ARFirst;
         }
         public Label ARLastOrbit(){
@@ -222,7 +227,7 @@ namespace masteroidResult{
             ARLast.Location = new System.Drawing.Point(20,210);
             ARLast.Size = new System.Drawing.Size(800,20);
             ARLast.Font = new System.Drawing.Font("Georgia", 8);
-            ARLast.Text = "Last Observation                            : ----";
+            ARLast.Text = "Last observation of " + request.resultAsteroid.name.ToString() + " : " + request.resultAsteroid.orbital_data.last_observation_date;
             return ARLast;
         }
         public Label ARFuturOrbit(){
@@ -230,7 +235,7 @@ namespace masteroidResult{
             ARNumber.Location = new System.Drawing.Point(20,230);
             ARNumber.Font = new System.Drawing.Font("Georgia", 8);
             ARNumber.Size = new System.Drawing.Size(800,20);
-            ARNumber.Text = "Estimated futur Observation    : ----";
+            ARNumber.Text = "Estimated futur observation of " + request.resultAsteroid.name.ToString() + " : " + request.resultAsteroid.orbital_data.orbit_determination_date;
             return ARNumber;
         }
         public Label ARNumberOrbit(){
@@ -238,19 +243,18 @@ namespace masteroidResult{
             ARNumber.Location = new System.Drawing.Point(20,250);
             ARNumber.Size = new System.Drawing.Size(800,20);
             ARNumber.Font = new System.Drawing.Font("Georgia", 8);
-            ARNumber.Text = "Number of Observation              : ----";
+            ARNumber.Text = "Number of observation of " + request.resultAsteroid.name.ToString() + " : " + request.resultAsteroid.orbital_data.observations_used.ToString() + " observations you can find them below";
             return ARNumber;
         }
     }
     // Label for Description asteroide _model
     public class ARDescAsteroide{
-        private string _descriptionAsteroide = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim.";
         public Label ARDescription(){
             Label ARDescriptionA = new Label();
             ARDescriptionA.Location = new System.Drawing.Point(20,300);
             ARDescriptionA.Size = new System.Drawing.Size(950,80);
             ARDescriptionA.Font = new System.Drawing.Font("Georgia", 10);
-            ARDescriptionA.Text = this._descriptionAsteroide;
+            ARDescriptionA.Text = "Description of " + request.resultAsteroid.name.ToString() + " : " + request.resultAsteroid.orbital_data.orbit_class.orbit_class_description.ToString();
             ARDescriptionA.TextAlign = ContentAlignment.MiddleCenter;
             return ARDescriptionA;
         }
