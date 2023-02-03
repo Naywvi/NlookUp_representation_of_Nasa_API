@@ -51,6 +51,8 @@ namespace mAsteroid{
                     application.appnn app = (application.appnn)Application.OpenForms[0];
                     var id = func.list.SelectedItem.ToString().Split(' ');
                     app.tabRequest("asteroid",id[2]);
+                    func.addListAsteroidOrbit();
+                    func.getResultAsteroid();
                 }
             };
             return func.list;

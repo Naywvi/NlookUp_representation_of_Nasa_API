@@ -33,17 +33,9 @@ namespace application{
             
             if(rqst == "asteroid"){
                 await request.loadAsteroidRequest(id);
-                app.dynamicTabControl.TabPages.Add(pRAsteroid);
                 loadTab("asteroid");
+                app.dynamicTabControl.TabPages.Add(pRAsteroid);
                 
-                //MessageBox.Show(request.resultAsteroid.id.ToString());
-                
-                // foreach (var item in request.resultAsteroid.close_approach_data){
-                    
-                //     MessageBox.Show(item.ToString());
-                    
-                // }
-            
             }else if (rqst == "apod"){
                 app.dynamicTabControl.TabPages.Add(pRApod);
                 loadTab("apod");

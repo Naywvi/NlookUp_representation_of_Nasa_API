@@ -24,20 +24,26 @@ namespace config{
             var responseInfo = response.GetAwaiter().GetResult();
             
             loading.Value += 20;
-            
-            if (responseInfo.StatusCode == HttpStatusCode.OK){
+            try{
+                if (responseInfo.StatusCode == HttpStatusCode.OK){
                 var read = new StreamReader(responseInfo.Content.ReadAsStreamAsync().Result);
                 
                 loading.Value += 20;
                 result = JsonConvert.DeserializeObject(read.ReadToEnd());
+                
                 loading.Value += 20;
                 
                 return true;
-            }else{
-                loading.Value = 0;
+                }else{
+                    loading.Value = 0;
+                    MessageBox.Show("Error bad request");
+                    return false;
+                }
+            }catch{
                 MessageBox.Show("Error bad request");
                 return false;
             }
+            
         }
         public static async Task<Task> loadAsteroidRequest(string id){
             var taskCompletionSource = new TaskCompletionSource();
@@ -59,9 +65,11 @@ namespace config{
         }
         
         public static void requestAsteroidList(){
-            if (startDateT.Text == "" || endDateT.Text == "")if(search("https://api.nasa.gov/neo/rest/v1/feed?api_key="))func.addListAsteroid();
-            else if(search("https://api.nasa.gov/neo/rest/v1/feed?api_key=", startDateT.Text, endDateT.Text))func.addListAsteroid();
+            if (startDateT.Text == "" || endDateT.Text == ""){
+                if(search("https://api.nasa.gov/neo/rest/v1/feed?api_key="))func.addListAsteroid();
+            }else{
+                if(search("https://api.nasa.gov/neo/rest/v1/feed?api_key=", startDateT.Text, endDateT.Text))func.addListAsteroid();
+            }
         }
-        
     }
 }
