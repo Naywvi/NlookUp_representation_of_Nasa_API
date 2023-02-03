@@ -1,4 +1,4 @@
-using System.Net;
+using config;
 namespace mapodResult{
     class initApodRMehods{
         private presentationRApod pApodR = new presentationRApod();
@@ -18,69 +18,50 @@ namespace mapodResult{
         }
     }
     public class presentationRApod{
-        private string titleApod = "Astronomy Picture of the Day - [date]"; // [date] = date of the picture + title
         public Label generateTitle(){
-            var apodPresentation = new Label();
-            apodPresentation.Location = new Point(10, 10);
-            apodPresentation.Text = this.titleApod;
-            apodPresentation.Font = new Font("Arial", 13, FontStyle.Bold);
-            apodPresentation.Size = new Size(950, 50);
-            apodPresentation.TextAlign = ContentAlignment.MiddleCenter;
-            apodPresentation.BorderStyle = BorderStyle.Fixed3D;
-            return apodPresentation;
+            func.apodPresentation.Location = new Point(10, 10);
+            func.apodPresentation.Font = new Font("Arial", 13, FontStyle.Bold);
+            func.apodPresentation.Size = new Size(950, 50);
+            func.apodPresentation.TextAlign = ContentAlignment.MiddleCenter;
+            func.apodPresentation.BorderStyle = BorderStyle.Fixed3D;
+            return func.apodPresentation;
         }
         public Label generateExplanation(){
-            var title = new Label();
-            title.Location = new Point(10, 730);
-            title.Text = "Explanation";
-            title.Font = new Font("Arial", 10, FontStyle.Bold);
-            title.Size = new Size(950, 50);
-            title.TextAlign = ContentAlignment.MiddleCenter;
-            title.BorderStyle = BorderStyle.Fixed3D;
-            return title;
+            func.title.Location = new Point(10, 730);
+            func.title.Font = new Font("Arial", 10, FontStyle.Bold);
+            func.title.Size = new Size(950, 50);
+            func.title.TextAlign = ContentAlignment.MiddleCenter;
+            func.title.BorderStyle = BorderStyle.Fixed3D;
+            return func.title;
         }
     }
     public class superfluApodR{
         public Label generateCopyright(){
-            var copyright = new Label();
-            copyright.Location = new Point(10, 790);
-            copyright.Text = "© 2021 NASA/JPL-Caltech/MSSS";//exemple copyright
-            copyright.Font = new Font("Arial", 10, FontStyle.Bold);
-            copyright.Size = new Size(950, 50);
-            return copyright;
+            func.copyright.Location = new Point(10, 790);
+            func.copyright.Font = new Font("Arial", 10, FontStyle.Bold);
+            func.copyright.Size = new Size(950, 50);
+            return func.copyright;
         }
     }
     public class imgApodR{
         public PictureBox generateImage(){
-            var img = new PictureBox();
-            img.Location = new Point(10, 70);
-            img.Size = new Size(950, 650);
-            img.LoadAsync("https://apod.nasa.gov/apod/image/2301/AUFSCHNAITER_Andreas_APOD_Bode_Cigare1024.jpg");//Image
-            return img;
+            func.img.Location = new Point(10, 70);
+            func.img.Size = new Size(950, 650);
+            return func.img;
         }
         public LinkLabel Download1024(){
-            var Dl1024 = new LinkLabel();
-            Dl1024.Text = "Download 1024x1024";
-            Dl1024.Location = new Point(10, 820);
-            Dl1024.Size = new Size(950, 50);
-            Dl1024.TextAlign = ContentAlignment.MiddleLeft;
-            Dl1024.LinkClicked += new LinkLabelLinkClickedEventHandler((sender, e) => {
-                WebClient client = new WebClient();
-                client.DownloadFileAsync(new Uri("https://apod.nasa.gov/apod/image/2301/AUFSCHNAITER_Andreas_APOD_Bode_Cigare1024.jpg"), "date-name_1024.jpg");
-            });
-            return Dl1024;
+            func.Dl1024.Text = "Download 1024x1024";
+            func.Dl1024.Location = new Point(10, 820);
+            func.Dl1024.Size = new Size(950, 50);
+            func.Dl1024.TextAlign = ContentAlignment.MiddleLeft;
+            return func.Dl1024;
         }
         public LinkLabel Download2048(){
-            var Dl2048 = new LinkLabel();
-            Dl2048.Text = "Download 2048x2048";
-            Dl2048.Location = new Point(10, 840);
-            Dl2048.Size = new Size(950, 80);
-            Dl2048.TextAlign = ContentAlignment.MiddleLeft;
-            Dl2048.LinkClicked += new LinkLabelLinkClickedEventHandler((sender, e) => {
-                WebClient client = new WebClient();
-                client.DownloadFileAsync(new Uri("https://apod.nasa.gov/apod/image/2301/AUFSCHNAITER_Andreas_APOD_Bode_Cigare2048.jpg"), "date-name_2048.jpg");
-            });
-            return Dl2048;
+            func.Dl2048.Text = "Download 2048x2048";
+            func.Dl2048.Location = new Point(10, 840);
+            func.Dl2048.Size = new Size(950, 80);
+            func.Dl2048.TextAlign = ContentAlignment.MiddleLeft;
+            return func.Dl2048;
         }
     }
 }

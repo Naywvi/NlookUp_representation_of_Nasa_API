@@ -9,39 +9,49 @@ namespace config{
         public static TextBox startDateTA = new TextBox();
         public static TextBox endDateTA = new TextBox();
         public static ProgressBar loading = new ProgressBar();
+        public static ProgressBar loading2 = new ProgressBar();
 
         //send request to api & get response + update loading bar
-        public static bool search(string url, string startDate = "", string endDate = ""){
-            loading.Value = 0;
-            loading.Value += 20;
+        public static void load(int loader, string reset = ""){
+            if(loader == 0){
+                if (reset == "reset")loading.Value = 0;
+                else loading.Value += 20;
+            }else if (loader == 1){
+                if (reset == "reset")loading2.Value = 0;
+                else loading2.Value += 20;
+            }
+        }
+        public static bool search(int loader,string url, string startDate = "", string endDate = ""){
+            load(loader,"reset");
+            load(loader);
+
             HttpClient client = new HttpClient();
             var request = new HttpRequestMessage{
                 Method = HttpMethod.Get,
                 RequestUri = new Uri(url + conf.apiKey + "&start_date=" + startDate + "&end_date=" + endDate),
             };
-            loading.Value += 20;
+            load(loader);
             
             var response = client.SendAsync(request).ConfigureAwait(false);
             var responseInfo = response.GetAwaiter().GetResult();
             
-            loading.Value += 20;
-
+            load(loader);
             try{
                 if (responseInfo.StatusCode == HttpStatusCode.OK){
                 var read = new StreamReader(responseInfo.Content.ReadAsStreamAsync().Result);
                 
-                loading.Value += 20;
+                load(loader);
                 if(url == "https://api.nasa.gov/neo/rest/v1/feed?api_key="){
                     conf.result = JsonConvert.DeserializeObject(read.ReadToEnd());
                 }else if (url == "https://api.nasa.gov/planetary/apod?api_key="){
                     conf.result2 = JsonConvert.DeserializeObject(read.ReadToEnd());
                 }
 
-                loading.Value += 20;
+                load(loader);
                 
                 return true;
                 }else{
-                    loading.Value = 0;
+                    load(loader,"reset");
                     MessageBox.Show("Error bad request");
                     return false;
                 }
@@ -71,19 +81,20 @@ namespace config{
         
         public static void requestAsteroidList(){
             var url = "https://api.nasa.gov/neo/rest/v1/feed?api_key=";
-            if (startDateTA.Text == "" || endDateTA.Text == ""){
-                if(search(url))func.addListAsteroid();
+            if (startDateT.Text == "" || endDateT.Text == ""){
+                if(search(0,url))func.addListAsteroid();
             }else{
-                if(search(url, startDateT.Text, endDateT.Text))func.addListAsteroid();
+                if(search(0,url, startDateT.Text, endDateT.Text))func.addListAsteroid();
             }
-
         }
+
         public static void requestApodList(){
             var url = "https://api.nasa.gov/planetary/apod?api_key=";
             if (startDateTA.Text == "" || endDateTA.Text == ""){
-                if(search(url)) func.addListApod();
+                if(search(1,url)) func.addListApodToday();
+                
             }else{
-                if(search(url, startDateT.Text, endDateT.Text));//func.addListAsteroid();
+                if(search(1,url, startDateTA.Text, endDateTA.Text))func.addListApod();
             }
         }
     }

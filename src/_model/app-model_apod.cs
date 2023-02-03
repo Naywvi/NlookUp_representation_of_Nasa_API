@@ -11,32 +11,30 @@ namespace mApod{
         //List all methods to init apod view
         public List<System.Windows.Forms.Control?> initApod(){
             List<System.Windows.Forms.Control?> list = new List<System.Windows.Forms.Control?>();
-            list.Add(this.apodPresentation.generatePresentation());
-            list.Add(this.apodFilters.filtersTitle());
-            list.Add(this.apodFilters.filtersSelectionDefault());
-            list.Add(this.apodFilters.filtersSelectionCustom());
-            list.Add(this.apodFilters.filtersBorders());
-            list.Add(this.apodFilters.filtersCustomLabelStartDate());
-            list.Add(this.apodFilters.filtersCustomStartDate());
-            list.Add(this.apodFilters.filtersCustomLabelEndDate());
-            list.Add(this.apodFilters.filtersCustomEndDate());
-            list.Add(this.apodFilters.filtersButton());
-            list.Add(this.apodFilters.filtersCustomBorders());
-            list.Add(this.apodList.generatedList());
-            list.Add(this.apodLoading.generateLoading());
+            list.Add(apodPresentation.generatePresentation());
+            list.Add(apodFilters.filtersTitle());
+            list.Add(apodFilters.filtersSelectionDefault());
+            list.Add(apodFilters.filtersSelectionCustom());
+            list.Add(apodFilters.filtersBorders());
+            list.Add(apodFilters.filtersCustomLabelStartDate());
+            list.Add(apodFilters.filtersCustomStartDate());
+            list.Add(apodFilters.filtersCustomLabelEndDate());
+            list.Add(apodFilters.filtersCustomEndDate());
+            list.Add(apodFilters.filtersButton());
+            list.Add(apodFilters.filtersCustomBorders());
+            list.Add(apodList.generatedList());
+            list.Add(apodLoading.generateLoading());
             return list;
         }
     }
     // Loading apod _model
     public class Aloading{
         public ProgressBar generateLoading(){
-            ProgressBar loading = new ProgressBar();
-            loading.Location = new Point(10, 630);
-            loading.Width = 970;
-            loading.Minimum = 0;
-            loading.Maximum = 100;
-            loading.Value = 40;
-            return loading;
+            request.loading2.Location = new Point(10, 630);
+            request.loading2.Width = 970;
+            request.loading2.Minimum = 0;
+            request.loading2.Maximum = 100;
+            return request.loading2;
         }
     }
 
@@ -47,8 +45,14 @@ namespace mApod{
             func.listApod.Size = new Size(10,440);
             func.listApod.Width = 970;
             func.listApod.BorderStyle = BorderStyle.Fixed3D;
-            //generateItem(); //<---- depuis l'api
-            //list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");
+            func.listApod.MouseDoubleClick += (sender, e) => {
+                if (func.listApod.SelectedItem != null){
+                    application.appnn app = (application.appnn)Application.OpenForms[0];
+                    var id = func.listApod.SelectedItem.ToString().Split(' ');
+                    app.tabRequest("apod");
+                    func.getResultApod(int.Parse(id[0]));
+                }
+            };
             return func.listApod;
         }
     }
@@ -57,7 +61,7 @@ namespace mApod{
         private string headerPresentation = "bla bla bla";
         public Label generatePresentation(){
             Label presentation = new Label();
-            presentation.Text = this.headerPresentation;
+            presentation.Text = headerPresentation;
             presentation.Location = new Point(10, 10);
             presentation.Size = new Size(10, 100);
             presentation.Width = 970;
@@ -132,6 +136,8 @@ namespace mApod{
                 if(selectionDefault.Checked){
                     request.startDateTA.Enabled = false;
                     request.endDateTA.Enabled = false;
+                    request.startDateTA.Text = "";
+                    request.endDateTA.Text = "";
                 }
             };
             if(selectionDefault.Checked){

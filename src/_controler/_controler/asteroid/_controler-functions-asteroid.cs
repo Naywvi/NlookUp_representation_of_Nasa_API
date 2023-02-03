@@ -1,3 +1,4 @@
+using System.Net;
 namespace config{
     public class func{
         public static ListBox list = new ListBox();
@@ -29,7 +30,14 @@ namespace config{
         public static Label ARNumber = new Label();
         public static Label ARDescriptionA = new Label();
 
-        public static  ListBox listApod = new ListBox();
+        public static ListBox listApod = new ListBox();
+        public static Label apodPresentation = new Label();
+        public static Label title = new Label();
+        public static Label copyright = new Label();
+        public static PictureBox img = new PictureBox();
+        public static LinkLabel Dl1024 = new LinkLabel();
+        public static LinkLabel Dl2048 = new LinkLabel();
+
         public static void addListAsteroid(){
             list.Items.Clear();
             foreach (var item in conf.result.near_earth_objects){
@@ -50,11 +58,17 @@ namespace config{
         public static void addListApod(){
             listApod.Items.Clear();
             var count = -1;
+            
             foreach (var item in conf.result2){
                 count++;
-                MessageBox.Show(item.date.ToString());
-                listApod.Items.Add(count.ToString() + " - date : " + item.date.ToString() + " name : " + item.name.ToString() );
+                listApod.Items.Add(count.ToString() + " - date : " + conf.result2[count].date + " name : " + conf.result2[count].title );
             }
+            conf.apodArray = true;
+        }
+        public static void addListApodToday(){
+            listApod.Items.Clear();
+            listApod.Items.Add("0 - date : " + conf.result2.date + " name : " + conf.result2.title );
+            conf.apodArray = false;
         }
         public static void getResultAsteroidOrbit(string idS){
             var id = int.Parse(idS);
@@ -103,6 +117,36 @@ namespace config{
             else ARSuspicious.Text = conf.resultAsteroid.name.ToString() + " is not a potentially hazardous asteroid";
 
             ARNameAsteroide.Text = conf.resultAsteroid.name.ToString();
+        }
+        public static void getResultApod(int id){
+            if (conf.apodArray == false){
+                apodPresentation.Text = "Astronomy Picture of the Day - " + conf.result2.date;
+                title.Text = "Explanation : " + conf.result2.explanation;
+                copyright.Text = "copyright : " + conf.result2.copyright;//exemple copyright
+                img.LoadAsync(conf.result2.url.ToString());//Image
+                Dl1024.LinkClicked += new LinkLabelLinkClickedEventHandler((sender, e) => {
+                    WebClient client = new WebClient();
+                    client.DownloadFileAsync(new Uri(conf.result2.url.ToString()), conf.result2.date.ToString() + "-" + conf.result2.title.ToString() + "_1024.jpg");
+                });
+                Dl2048.LinkClicked += new LinkLabelLinkClickedEventHandler((sender, e) => {
+                    WebClient client = new WebClient();
+                    client.DownloadFileAsync(new Uri(conf.result2.hdurl.ToString()), conf.result2.date.ToString() + "-" + conf.result2.title.ToString() + "_2048.jpg");
+                });
+            }else{
+                apodPresentation.Text = "Astronomy Picture of the Day - " + conf.result2[id].date;
+                title.Text = "Explanation : " + conf.result2[id].explanation;
+                copyright.Text = "copyright : " + conf.result2[id].copyright;//exemple copyright
+                img.LoadAsync(conf.result2[id].url.ToString());//Image
+                Dl1024.LinkClicked += new LinkLabelLinkClickedEventHandler((sender, e) => {
+                    WebClient client = new WebClient();
+                    client.DownloadFileAsync(new Uri(conf.result2[id].url.ToString()), conf.result2[id].date.ToString() + "-" + conf.result2[id].title.ToString() + "_1024.jpg");
+                });
+                Dl2048.LinkClicked += new LinkLabelLinkClickedEventHandler((sender, e) => {
+                    WebClient client = new WebClient();
+                    client.DownloadFileAsync(new Uri(conf.result2[id].hdurl.ToString()), conf.result2[id].date.ToString() + "-" + conf.result2.title[id].ToString() + "_2048.jpg");
+                });
+            }
+            
         }
     }
 }

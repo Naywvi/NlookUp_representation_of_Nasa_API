@@ -8,5 +8,6 @@ namespace config{
         public static dynamic resultAsteroid;
         public static dynamic result2;
         public static dynamic resultApod;
+        public static bool apodArray;
     }
 }

@@ -23,7 +23,7 @@ namespace application{
             this.viewLoad();
         }
 
-        public async void tabRequest(string rqst,string id){
+        public async void tabRequest(string rqst,string id = ""){
             application.appnn app = (application.appnn)Application.OpenForms[0];
             
             foreach(TabPage tab in app.dynamicTabControl.TabPages){
@@ -37,14 +37,13 @@ namespace application{
                 app.dynamicTabControl.TabPages.Add(pRAsteroid);
                 
             }else if (rqst == "apod"){
-                app.dynamicTabControl.TabPages.Add(pRApod);
                 loadTab("apod");
+                app.dynamicTabControl.TabPages.Add(pRApod);
             }
         }
 
         public void loadTab(string request){
             if (request == "apod"){
-                //initioaliser
                 foreach(System.Windows.Forms.Control? method in mApodR.initApodR())pRApod.Controls.Add(method);
             }else if (request == "asteroid"){
                 foreach(System.Windows.Forms.Control? method in mAsteroidR.initAsteroidR())pRAsteroid.Controls.Add(method);
