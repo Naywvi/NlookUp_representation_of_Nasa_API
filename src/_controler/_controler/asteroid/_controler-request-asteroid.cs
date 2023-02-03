@@ -29,8 +29,12 @@ namespace config{
                 var read = new StreamReader(responseInfo.Content.ReadAsStreamAsync().Result);
                 
                 loading.Value += 20;
-                conf.result = JsonConvert.DeserializeObject(read.ReadToEnd());
-                
+                if(url == "https://api.nasa.gov/neo/rest/v1/feed?api_key="){
+                    conf.result = JsonConvert.DeserializeObject(read.ReadToEnd());
+                }else if (url == "https://api.nasa.gov/planetary/apod?api_key="){
+                    conf.result2 = JsonConvert.DeserializeObject(read.ReadToEnd());
+                }
+
                 loading.Value += 20;
                 
                 return true;
@@ -64,11 +68,19 @@ namespace config{
         }
         
         public static void requestAsteroidList(){
-            
+            var url = "https://api.nasa.gov/neo/rest/v1/feed?api_key=";
             if (startDateT.Text == "" || endDateT.Text == ""){
-                if(search("https://api.nasa.gov/neo/rest/v1/feed?api_key="))func.addListAsteroid();
+                if(search(url))func.addListAsteroid();
             }else{
-                if(search("https://api.nasa.gov/neo/rest/v1/feed?api_key=", startDateT.Text, endDateT.Text))func.addListAsteroid();
+                if(search(url, startDateT.Text, endDateT.Text))func.addListAsteroid();
+            }
+        }
+        public static void requestApodList(){
+            var url = "https://api.nasa.gov/planetary/apod?api_key=";
+            if (startDateT.Text == "" || endDateT.Text == ""){
+                if(search(url))func.addListAsteroid();
+            }else{
+                if(search(url, startDateT.Text, endDateT.Text))func.addListAsteroid();
             }
         }
     }

@@ -82,7 +82,7 @@ namespace mAsteroid{
             btnSubmit.Location = new Point(810,124);
             btnSubmit.Text = "Submit";
             btnSubmit.Size = new Size(160,30);
-            // Check if the dates are valid 2015-03-09
+            // Check if the dates are valid
             btnSubmit.Click += new EventHandler((sender, e) => {
                 request.requestAsteroidList();
             });
