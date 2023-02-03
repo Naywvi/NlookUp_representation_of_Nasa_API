@@ -1,3 +1,4 @@
+using config;
 namespace mApod{
     // Callback of apod _model
     public class initApodMethod{
@@ -42,14 +43,13 @@ namespace mApod{
     // List apod _model
     public class Alist{
         public ListBox generatedList(){
-            ListBox list = new ListBox();
-            list.Location = new Point(10 , 180);
-            list.Size = new Size(10,440);
-            list.Width = 970;
-            list.BorderStyle = BorderStyle.Fixed3D;
+            func.listApod.Location = new Point(10 , 180);
+            func.listApod.Size = new Size(10,440);
+            func.listApod.Width = 970;
+            func.listApod.BorderStyle = BorderStyle.Fixed3D;
             //generateItem(); //<---- depuis l'api
-            list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");
-            return list;
+            //list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");list.Items.Add("GeeksForGeeks");
+            return func.listApod;
         }
     }
     // Presentation apod _model
@@ -73,14 +73,16 @@ namespace mApod{
             btnSubmit.Location = new Point(810,124);
             btnSubmit.Text = "Submit";
             btnSubmit.Size = new Size(160,30);
+            btnSubmit.MouseClick += (sender, e) => {
+                request.requestApodList();
+            }; 
             return btnSubmit;
         }
         public TextBox filtersCustomEndDate(){
-            TextBox endDateT = new TextBox();
-            endDateT.Location = new Point(670,126);
-            endDateT.PlaceholderText = "YYYY-MM-DD";
-            endDateT.Width = 130;
-            return endDateT;
+            request.endDateTA.Location = new Point(670,126);
+            request.endDateTA.PlaceholderText = "YYYY-MM-DD";
+            request.endDateTA.Width = 130;
+            return request.endDateTA;
         }
         public Label filtersCustomLabelEndDate(){
             Label endDateL = new Label();
@@ -90,11 +92,10 @@ namespace mApod{
             return endDateL;
         }
          public TextBox filtersCustomStartDate(){
-            TextBox startDateT = new TextBox();
-            startDateT.Location = new Point(430,127);
-            startDateT.PlaceholderText = "YYYY-MM-DD";
-            startDateT.Width = 130;
-            return startDateT;
+            request.startDateTA.Location = new Point(430,127);
+            request.startDateTA.PlaceholderText = "YYYY-MM-DD";
+            request.startDateTA.Width = 130;
+            return request.startDateTA;
         }
         public Label filtersCustomLabelStartDate(){
             Label startDateL = new Label();
@@ -114,12 +115,29 @@ namespace mApod{
             RadioButton selectionCustom = new RadioButton();
             selectionCustom.Location = new Point(205,127);
             selectionCustom.Text = "Custom";
+            selectionCustom.CheckedChanged += (sender, e) => {
+                if(selectionCustom.Checked){
+                    request.startDateTA.Enabled = true;
+                    request.endDateTA.Enabled = true;
+                }
+            };
             return selectionCustom;
         }
         public RadioButton filtersSelectionDefault(){
             RadioButton selectionDefault = new RadioButton();
             selectionDefault.Location = new Point(100,127);
             selectionDefault.Text = "default";
+            selectionDefault.Checked = true;
+            selectionDefault.CheckedChanged += (sender, e) => {
+                if(selectionDefault.Checked){
+                    request.startDateTA.Enabled = false;
+                    request.endDateTA.Enabled = false;
+                }
+            };
+            if(selectionDefault.Checked){
+                    request.startDateTA.Enabled = false;
+                    request.endDateTA.Enabled = false;
+            };
             return selectionDefault;
         }
         public Label filtersTitle(){

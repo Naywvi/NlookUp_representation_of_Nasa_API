@@ -6,6 +6,8 @@ namespace config{
 
         public static TextBox startDateT = new TextBox();
         public static TextBox endDateT = new TextBox();
+        public static TextBox startDateTA = new TextBox();
+        public static TextBox endDateTA = new TextBox();
         public static ProgressBar loading = new ProgressBar();
 
         //send request to api & get response + update loading bar
@@ -69,18 +71,19 @@ namespace config{
         
         public static void requestAsteroidList(){
             var url = "https://api.nasa.gov/neo/rest/v1/feed?api_key=";
-            if (startDateT.Text == "" || endDateT.Text == ""){
+            if (startDateTA.Text == "" || endDateTA.Text == ""){
                 if(search(url))func.addListAsteroid();
             }else{
                 if(search(url, startDateT.Text, endDateT.Text))func.addListAsteroid();
             }
+
         }
         public static void requestApodList(){
             var url = "https://api.nasa.gov/planetary/apod?api_key=";
-            if (startDateT.Text == "" || endDateT.Text == ""){
-                if(search(url))func.addListAsteroid();
+            if (startDateTA.Text == "" || endDateTA.Text == ""){
+                if(search(url)) func.addListApod();
             }else{
-                if(search(url, startDateT.Text, endDateT.Text))func.addListAsteroid();
+                if(search(url, startDateT.Text, endDateT.Text));//func.addListAsteroid();
             }
         }
     }

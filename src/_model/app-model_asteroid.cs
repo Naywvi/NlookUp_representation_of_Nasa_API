@@ -84,7 +84,7 @@ namespace mAsteroid{
             btnSubmit.Size = new Size(160,30);
             // Check if the dates are valid
             btnSubmit.Click += new EventHandler((sender, e) => {
-                request.requestAsteroidList();
+                request.requestApodList();
             });
             return btnSubmit;
         }

@@ -28,6 +28,8 @@ namespace config{
         public static Label ARLast = new Label();
         public static Label ARNumber = new Label();
         public static Label ARDescriptionA = new Label();
+
+        public static  ListBox listApod = new ListBox();
         public static void addListAsteroid(){
             list.Items.Clear();
             foreach (var item in conf.result.near_earth_objects){
@@ -42,10 +44,18 @@ namespace config{
             listOrbit.Items.Clear();
             foreach (var item in conf.resultAsteroid.close_approach_data){
                 count++;
-                listOrbit.Items.Add(count.ToString()+" - " + item.close_approach_date_full + " orbiting " + item.orbiting_body);
+                listOrbit.Items.Add(count.ToString() + " - " + item.close_approach_date_full + " orbiting " + item.orbiting_body);
             }
         }
-
+        public static void addListApod(){
+            listApod.Items.Clear();
+            var count = -1;
+            foreach (var item in conf.result2){
+                count++;
+                MessageBox.Show(item.date.ToString());
+                listApod.Items.Add(count.ToString() + " - date : " + item.date.ToString() + " name : " + item.name.ToString() );
+            }
+        }
         public static void getResultAsteroidOrbit(string idS){
             var id = int.Parse(idS);
             AROrbitV.Text = "Date of Observation : " + conf.resultAsteroid.close_approach_data[id].close_approach_date_full;
