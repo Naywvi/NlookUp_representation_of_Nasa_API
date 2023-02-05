@@ -1,5 +1,7 @@
+/*************************************************************************
+* Here we will find all the properties containing the visual of the tabs *
+*************************************************************************/
 namespace mTab{
-    // Tabs _model
     public class tab{
         public TabControl generateTabControl(){
             TabControl dynamicTabControl = new TabControl();  

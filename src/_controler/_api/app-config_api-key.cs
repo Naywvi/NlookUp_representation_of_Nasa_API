@@ -1,3 +1,8 @@
+/******************************************************************************
+* Here we will find the functions affecting the application itself.           *
+* In the field of API code verification. We will have the config of           *
+* the window in question as well as its function allowing the verification    *
+******************************************************************************/
 using application;
 using config;
 namespace vApi{

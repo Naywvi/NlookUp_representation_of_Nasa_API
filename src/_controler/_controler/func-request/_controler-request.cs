@@ -1,6 +1,8 @@
+/*****************************************************************************************************************************
+* Here we will find the functions that allow us to send requests to the nasa api once the validation of the api code is done *
+*****************************************************************************************************************************/
 using System.Net;
 using Newtonsoft.Json;
-
 namespace config{
     static class request{
 

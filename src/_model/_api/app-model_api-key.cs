@@ -1,5 +1,7 @@
+/*******************************************************************************************************************
+* Here we will find all the properties containing the visual which will allow us to check if the API code is valid *
+*******************************************************************************************************************/
 using System.Net;
-using vApi;
 namespace mApiKey{
     // Api methods for _model
     public class initApiKeyMethods{
@@ -7,11 +9,11 @@ namespace mApiKey{
         // List all methods for api _model
         public List<System.Windows.Forms.Control?> initApiKey(){
             List<System.Windows.Forms.Control?> list = new List<System.Windows.Forms.Control?>();
-            list.Add(this.api.labelApiKey());
-            list.Add(this.api.inputApiKey());
-            list.Add(this.api.buttonApiKey());
-            list.Add(this.api.linkApiKey());
-            list.Add(this.api.bordersApiKey());
+            list.Add(api.labelApiKey());
+            list.Add(api.inputApiKey());
+            list.Add(api.buttonApiKey());
+            list.Add(api.linkApiKey());
+            list.Add(api.bordersApiKey());
             return list;
         }
     }
@@ -49,12 +51,12 @@ namespace mApiKey{
             buttonApiKey.Size = new Size(440,40);
             buttonApiKey.Text = "Submit";
             buttonApiKey.Click += new EventHandler((sender, e) => {
-                var input = this.inputApiKeyTxt.Text;
+                var input = inputApiKeyTxt.Text;
                 try{
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.nasa.gov/planetary/apod?api_key=" + input);
                     HttpWebResponse requestC = (HttpWebResponse)request.GetResponse();
                     if (requestC.StatusCode == HttpStatusCode.OK){
-                        var app = new api();
+                        vApi.api app = (vApi.api)Application.OpenForms[0];
                         app.apikeyValid(input);
                     }
                 }catch(WebException){

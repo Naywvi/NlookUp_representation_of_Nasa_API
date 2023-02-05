@@ -1,6 +1,8 @@
+/**************************************************************************************************************************
+* Here we will find all the properties containing the visual of the result of the asteroid search as well as their orbits *
+**************************************************************************************************************************/
 using config;
 namespace masteroidResult{
-    
     public class initAsteroidRMethods{
         private ARborders mARborders = new ARborders();
         private ARNameAsteroide mARNameAsteroide = new ARNameAsteroide();
@@ -47,13 +49,13 @@ namespace masteroidResult{
             list.Add(mARMiss.AROrbitM4());
             list.Add(mARMiss.AROrbitM5());
 
-            // list.Add(mARborders.ARborderTitle());
-            // list.Add(mARborders.ARborderInformationAboutUs());
-            // list.Add(mARborders.ARborderInformationAboutUsDistances());
-            // list.Add(mARborders.ARborderOrbits());
-            // list.Add(mARborders.ARborderDescription());
-            // list.Add(mARborders.ARborderInformationVelocity());
-            // list.Add(mARborders.ARborderInformationMiss());
+            list.Add(mARborders.ARborderTitle());
+            list.Add(mARborders.ARborderInformationAboutUs());
+            list.Add(mARborders.ARborderInformationAboutUsDistances());
+            list.Add(mARborders.ARborderOrbits());
+            list.Add(mARborders.ARborderDescription());
+            list.Add(mARborders.ARborderInformationVelocity());
+            list.Add(mARborders.ARborderInformationMiss());
             return list;
         }
     }
@@ -116,7 +118,6 @@ namespace masteroidResult{
             func.ARNameAsteroide.Size = new System.Drawing.Size(480,50);
             func.ARNameAsteroide.Font = new System.Drawing.Font("Arial", 15, System.Drawing.FontStyle.Bold);
             func.ARNameAsteroide.TextAlign = ContentAlignment.MiddleCenter;
-            func.ARNameAsteroide.BorderStyle = BorderStyle.Fixed3D;
             return func.ARNameAsteroide;
         }
     }
@@ -206,10 +207,10 @@ namespace masteroidResult{
             return func.ARLast;
         }
         public Label ARFuturOrbit(){
-            func.ARNumber.Location = new System.Drawing.Point(20,230);
-            func.ARNumber.Font = new System.Drawing.Font("Georgia", 8);
-            func.ARNumber.Size = new System.Drawing.Size(800,20);
-            return func.ARNumber;
+            func.ARFutur.Location = new System.Drawing.Point(20,230);
+            func.ARFutur.Font = new System.Drawing.Font("Georgia", 8);
+            func.ARFutur.Size = new System.Drawing.Size(800,20);
+            return func.ARFutur;
         }
         public Label ARNumberOrbit(){
             func.ARNumber.Location = new System.Drawing.Point(20,250);
@@ -241,15 +242,6 @@ namespace masteroidResult{
                 if (func.listOrbit.SelectedItem != null){
                     var id = func.listOrbit.SelectedItem.ToString().Split(' ');
                     func.getResultAsteroidOrbit(id[0]);
-                    // try{
-                    //     MessageBox.Show(Int64.Parse(id[0]).ToString());
-                    //     //MessageBox.Show(Int32.Parse(id[0]));
-                        
-                        
-                    // }catch{
-                    //     func.getResultAsteroidOrbit((int)Int64.Parse(id[0]));
-                    // }
-                    
                 }
             });
             return func.listOrbit;

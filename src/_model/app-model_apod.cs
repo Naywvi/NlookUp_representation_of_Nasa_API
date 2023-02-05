@@ -1,3 +1,6 @@
+/***************************************************************************************************************************
+* Here we will find all the properties containing the visual that will allow us to search for apods (a picture of the day) *
+***************************************************************************************************************************/
 using config;
 namespace mApod{
     // Callback of apod _model
@@ -47,7 +50,7 @@ namespace mApod{
             func.listApod.BorderStyle = BorderStyle.Fixed3D;
             func.listApod.MouseDoubleClick += (sender, e) => {
                 if (func.listApod.SelectedItem != null){
-                    application.appnn app = (application.appnn)Application.OpenForms[0];
+                    application.appnn app = (application.appnn)Application.OpenForms[1];
                     var id = func.listApod.SelectedItem.ToString().Split(' ');
                     app.tabRequest("apod");
                     func.getResultApod(int.Parse(id[0]));

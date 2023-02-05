@@ -1,3 +1,6 @@
+/*************************************************************************************************************************
+* Here we will find all the properties containing the visual of the result of the search for apod (a picture of the day) *
+**************************************************************************************************************************/
 using config;
 namespace mapodResult{
     class initApodRMehods{

@@ -1,3 +1,6 @@
+/********************************************************************************************************
+* Here we will find all the properties containing the visual that will allow us to search for asteroids *
+*********************************************************************************************************/
 using config;
 namespace mAsteroid{
     // Callback of asteroid _model methods
@@ -11,19 +14,19 @@ namespace mAsteroid{
         //List all methods to init asteroid view
         public List<Control?> initAsteroid(){
             List<System.Windows.Forms.Control?> list = new List<System.Windows.Forms.Control?>();
-            list.Add(this.asteroidPresentation.generatePresentation());
-            list.Add(this.asteroidFilters.filtersTitle());
-            list.Add(this.asteroidFilters.filtersSelectionDefault());
-            list.Add(this.asteroidFilters.filtersSelectionCustom());
-            list.Add(this.asteroidFilters.filtersBorders());
-            list.Add(this.asteroidFilters.filtersCustomLabelStartDate());
-            list.Add(this.asteroidFilters.filtersCustomStartDate());
-            list.Add(this.asteroidFilters.filtersCustomLabelEndDate());
-            list.Add(this.asteroidFilters.filtersCustomEndDate());
-            list.Add(this.asteroidFilters.filtersButton());
-            list.Add(this.asteroidFilters.filtersCustomBorders());
-            list.Add(this.asteroidList.generatedList());
-            list.Add(this.asteroidLoading.generateLoading());
+            list.Add(asteroidPresentation.generatePresentation());
+            list.Add(asteroidFilters.filtersTitle());
+            list.Add(asteroidFilters.filtersSelectionDefault());
+            list.Add(asteroidFilters.filtersSelectionCustom());
+            list.Add(asteroidFilters.filtersBorders());
+            list.Add(asteroidFilters.filtersCustomLabelStartDate());
+            list.Add(asteroidFilters.filtersCustomStartDate());
+            list.Add(asteroidFilters.filtersCustomLabelEndDate());
+            list.Add(asteroidFilters.filtersCustomEndDate());
+            list.Add(asteroidFilters.filtersButton());
+            list.Add(asteroidFilters.filtersCustomBorders());
+            list.Add(asteroidList.generatedList());
+            list.Add(asteroidLoading.generateLoading());
             return list;
         }
 
@@ -48,7 +51,7 @@ namespace mAsteroid{
             func.list.BorderStyle = BorderStyle.Fixed3D;
             func.list.MouseDoubleClick += (sender, e) => {
                 if (func.list.SelectedItem != null){
-                    application.appnn app = (application.appnn)Application.OpenForms[0];
+                    application.appnn app = (application.appnn)Application.OpenForms[1];
                     var id = func.list.SelectedItem.ToString().Split(' ');
                     app.tabRequest("asteroid",id[2]);
                     func.addListAsteroidOrbit();
@@ -65,7 +68,7 @@ namespace mAsteroid{
         
         public Label generatePresentation(){
             Label presentation = new Label();
-            presentation.Text = this.headerPresentation;
+            presentation.Text = headerPresentation;
             presentation.Location = new Point(10, 10);
             presentation.Size = new Size(10, 100);
             presentation.Width = 970;

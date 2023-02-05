@@ -1,3 +1,7 @@
+/********************************************************************************************
+* Here we will find the launch of the application allowing the management and visualization *
+* of the information received from the NASA API                                             *
+*********************************************************************************************/
 using mApod;
 using mAsteroid;
 using mapodResult;

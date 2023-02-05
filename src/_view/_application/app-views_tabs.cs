@@ -1,3 +1,6 @@
+/****************************************************************************************************
+* Here we will find the tabs that the application contains, we load them and launch them afterwards *
+****************************************************************************************************/
 using mTab;
 namespace application{
     public partial class appnn : Form{

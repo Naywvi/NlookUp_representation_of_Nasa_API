@@ -1,3 +1,8 @@
+/************************************************************************************
+* Here we will find all the modifications that can be made to the final result.     *
+* The impact is made on the model. We define the possible modifiers and then once   *
+* the requests are received we assign the results.                                  *
+************************************************************************************/
 using System.Net;
 namespace config{
     public class func{
@@ -28,6 +33,7 @@ namespace config{
         public static Label ARFirst = new Label();
         public static Label ARLast = new Label();
         public static Label ARNumber = new Label();
+        public static Label ARFutur= new Label();
         public static Label ARDescriptionA = new Label();
 
         public static ListBox listApod = new ListBox();
@@ -83,10 +89,9 @@ namespace config{
             AROrbitM.Text = "Miss Distance : ";
         }
         public static void getResultAsteroid(){
-            ARDescriptionA.Refresh();
             ARDescriptionA.Text = "Description of " + conf.resultAsteroid.name.ToString() + " : " + conf.resultAsteroid.orbital_data.orbit_class.orbit_class_description.ToString();
             ARNumber.Text = "Number of observation of " + conf.resultAsteroid.name.ToString() + " : " + conf.resultAsteroid.orbital_data.observations_used.ToString() + " observations you can find them below";
-            ARNumber.Text = "Estimated futur observation of " + conf.resultAsteroid.name.ToString() + " : " + conf.resultAsteroid.orbital_data.orbit_determination_date;
+            ARFutur.Text = "Estimated futur observation of " + conf.resultAsteroid.name.ToString() + " : " + conf.resultAsteroid.orbital_data.orbit_determination_date;
             ARLast.Text = "Last observation of " + conf.resultAsteroid.name.ToString() + " : " + conf.resultAsteroid.orbital_data.last_observation_date;
             ARFirst.Text = "First observation of " + conf.resultAsteroid.name.ToString() + " : " + conf.resultAsteroid.orbital_data.first_observation_date;
             AREquinox.Text = "Equinox : " + conf.resultAsteroid.orbital_data.equinox.ToString();
@@ -116,7 +121,35 @@ namespace config{
             if(conf.resultAsteroid.is_potentially_hazardous_asteroid.ToString() == "True")ARSuspicious.Text = conf.resultAsteroid.name.ToString() + " is a potentially hazardous asteroid";
             else ARSuspicious.Text = conf.resultAsteroid.name.ToString() + " is not a potentially hazardous asteroid";
 
+            
             ARNameAsteroide.Text = conf.resultAsteroid.name.ToString();
+
+            // Place to front to avoid bugs
+            ARSuspicious.BringToFront();
+            ARNameAsteroide.BringToFront();
+            ARDescriptionA.BringToFront();
+            ARNumber.BringToFront();
+            ARLast.BringToFront();
+            ARFutur.BringToFront();
+            ARFirst.BringToFront();
+            AREquinox.BringToFront();
+            ARUncertain.BringToFront();
+            ARMagnitude.BringToFront();
+            ARkm.BringToFront();
+            ARml.BringToFront();
+            estimHmax.BringToFront();
+            estimHmin.BringToFront();
+            estimSmax.BringToFront();
+            estimSmin.BringToFront();
+            AROrbitV.BringToFront();
+            AROrbitV2.BringToFront();
+            AROrbitV3.BringToFront();
+            AROrbitV4.BringToFront();
+            AROrbitM.BringToFront();
+            AROrbitM2.BringToFront();
+            AROrbitM3.BringToFront();
+            AROrbitM4.BringToFront();
+            AROrbitM5.BringToFront();
         }
         public static void getResultApod(int id){
             if (conf.apodArray == false){
@@ -146,7 +179,6 @@ namespace config{
                     client.DownloadFileAsync(new Uri(conf.result2[id].hdurl.ToString()), conf.result2[id].date.ToString() + "-" + conf.result2.title[id].ToString() + "_2048.jpg");
                 });
             }
-            
         }
     }
 }
